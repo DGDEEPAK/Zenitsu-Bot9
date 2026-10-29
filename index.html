@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zenitsu Bot | Connect</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      background: radial-gradient(circle at top, #34204f, #090910 65%);
+    }
+    .card {
+      width: 100%;
+      max-width: 400px;
+      padding: 28px;
+      border: 1px solid #6745a0;
+      border-radius: 20px;
+      background: #15131e;
+      box-shadow: 0 15px 55px #0008;
+    }
+    h1 { text-align: center; margin-bottom: 8px; }
+    p { color: #bbb6ca; line-height: 1.6; }
+    label { display: block; margin: 20px 0 8px; }
+    input, button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    input {
+      color: white;
+      background: #211d2d;
+      border: 1px solid #514367;
+    }
+    button {
+      margin-top: 16px;
+      border: 0;
+      background: #a66cff;
+      color: #130b20;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #status { margin-top: 18px; overflow-wrap: anywhere; }
+    .note { font-size: 12px; text-align: center; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>⚡ Zenitsu Bot</h1>
+    <p style="text-align:center">
+      WhatsApp connection portal
+    </p>
+
+    <form id="connectForm">
+      <label for="phone">Phone number with country code</label>
+      <input
+        id="phone"
+        type="tel"
+        placeholder="Country code + number"
+        autocomplete="tel"
+        required
+      >
+      <button type="submit">Connect</button>
+    </form>
+
+    <p id="status" role="status">
+      Website ready. Connection service is not configured.
+    </p>
+
+    <p class="note">
+      Only connect accounts you own or are authorized to link.
+    </p>
+  </main>
+
+  <script>
+    const form = document.getElementById("connectForm");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const phone = document.getElementById("phone")
+        .value.trim();
+
+      if (!/^\+?[0-9]{8,15}$/.test(phone)) {
+        status.textContent =
+          "Please enter a valid phone number.";
+        return;
+      }
+
+      status.textContent =
+        "The website is working, but a connection service " +
+        "has not been configured yet.";
+    });
+  </script>
+</body>
+</html>
